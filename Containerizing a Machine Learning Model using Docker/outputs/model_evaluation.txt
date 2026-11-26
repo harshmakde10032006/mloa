@@ -1,0 +1,40 @@
+MLOps Assignment - Model Evaluation Report
+=============================================
+Course: MLOps (Machine Learning Operations)
+Unit: III - Model Deployment and Serving
+Model: RandomForestClassifier(n_estimators=100, random_state=42)
+Dataset: Iris Plants Database
+
+Dataset Split:
+- Total Samples: 150
+- Training Samples: 120
+- Testing Samples: 30
+- Test Size: 0.20
+- Random State: 42
+
+Evaluation Results:
+-------------------
+Accuracy Score: 0.9000 (90.00%)
+
+Classification Report:
+              precision    recall  f1-score   support
+
+      setosa       1.00      1.00      1.00        10
+  versicolor       0.82      0.90      0.86        10
+   virginica       0.89      0.80      0.84        10
+
+    accuracy                           0.90        30
+   macro avg       0.90      0.90      0.90        30
+weighted avg       0.90      0.90      0.90        30
+
+
+Confusion Matrix:
+[[10  0  0]
+ [ 0  9  1]
+ [ 0  2  8]]
+
+Target Classes:
+0: setosa
+1: versicolor
+2: virginica
+=============================================

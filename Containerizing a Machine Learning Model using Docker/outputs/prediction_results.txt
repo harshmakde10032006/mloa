@@ -1,0 +1,42 @@
+==========================================================
+      MLOps Assignment - REST API Prediction Test Log     
+==========================================================
+Base URL: http://localhost:5000
+
+--- [TEST 1: Home Endpoint] GET http://localhost:5000/ ---
+Status Code: 200
+Response Body: {"message":"Iris ML Model API is running","status":"success"}
+
+
+--- [TEST 2: Health Endpoint] GET http://localhost:5000/health ---
+Status Code: 200
+Response Body: {"model_loaded":true,"status":"healthy"}
+
+
+--- [TEST 3: Prediction (Setosa)] POST http://localhost:5000/predict ---
+Request Body: {"features": [5.1, 3.5, 1.4, 0.2]}
+Status Code: 200
+Response Body: {"prediction":"setosa","prediction_class":0,"status":"success"}
+
+
+--- [TEST 4: Prediction (Virginica)] POST http://localhost:5000/predict ---
+Request Body: {"features": [6.7, 3.0, 5.2, 2.3]}
+Status Code: 200
+Response Body: {"prediction":"virginica","prediction_class":2,"status":"success"}
+
+
+--- [TEST 5: Invalid Input (Fewer Features)] POST http://localhost:5000/predict ---
+Request Body: {"features": [5.1, 3.5]}
+Status Code: 400
+Response Body: {"error":"Exactly four features are required. Received 2.","status":"error"}
+
+
+--- [TEST 6: Invalid Input (Non-numeric)] POST http://localhost:5000/predict ---
+Request Body: {"features": [5.1, "abc", 1.4, 0.2]}
+Status Code: 400
+Response Body: {"error":"Feature at index 1 ('abc') is not numeric","status":"error"}
+
+
+==========================================================
+All REST API tests verified against Docker container successfully.
+==========================================================
