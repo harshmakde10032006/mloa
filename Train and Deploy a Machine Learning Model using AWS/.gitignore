@@ -1,0 +1,23 @@
+# Virtual environment
+.venv/
+env/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Checkpoints
+.ipynb_checkpoints/
+
+# Data files
+*.csv
+*.joblib
+*.tar.gz
+
+# Environment variables & secrets
+.env
+*.pem
+credentials
+config
