@@ -1,0 +1,22 @@
+===============================================
+MODEL EVALUATION REPORT (Iris Classification)
+===============================================
+Model: RandomForestClassifier(n_estimators=100, random_state=42)
+Test Accuracy: 0.9000 (90.00%)
+
+Classification Report:
+              precision    recall  f1-score   support
+
+      setosa       1.00      1.00      1.00        10
+  versicolor       0.82      0.90      0.86        10
+   virginica       0.89      0.80      0.84        10
+
+    accuracy                           0.90        30
+   macro avg       0.90      0.90      0.90        30
+weighted avg       0.90      0.90      0.90        30
+
+Training Set Feature Statistics:
+  - sepal_length: mean = 5.8417, std = 0.8409
+  - sepal_width: mean = 3.0483, std = 0.4485
+  - petal_length: mean = 3.7700, std = 1.7685
+  - petal_width: mean = 1.2050, std = 0.7627

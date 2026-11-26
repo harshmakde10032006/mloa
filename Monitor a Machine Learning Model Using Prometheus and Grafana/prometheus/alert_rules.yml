@@ -1,0 +1,47 @@
+groups:
+  - name: ml_model_alerts
+    rules:
+      - alert: ModelServiceDown
+        expr: up{job="ml_api"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "ML Model Service is DOWN"
+          description: "model-service:8000 (job ml_api) has been unreachable for more than 30 seconds."
+
+      - alert: HighErrorRate
+        expr: sum(rate(ml_prediction_errors_total[1m])) / clamp_min(sum(rate(ml_prediction_requests_total[1m])), 1e-9) > 0.05
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High prediction error rate detected"
+          description: "Error rate exceeded 5% over the last minute (current: {{ $value | humanizePercentage }})."
+
+      - alert: HighP95Latency
+        expr: histogram_quantile(0.95, sum by (le) (rate(ml_prediction_latency_seconds_bucket[2m]))) > 0.5
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High P95 prediction latency detected"
+          description: "95th percentile latency exceeded 0.5s for 2 minutes (current: {{ $value }}s)."
+
+      - alert: FeatureDriftDetected
+        expr: abs(model_feature_drift_zscore) > 3
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Statistical feature drift detected"
+          description: "Feature {{ $labels.feature }} has an absolute z-score > 3.0 relative to baseline (current z: {{ $value }})."
+
+      - alert: LowModelAccuracy
+        expr: (sum(rate(model_feedback_total{outcome="correct"}[5m])) / clamp_min(sum(rate(model_feedback_total[5m])), 1e-9)) < 0.85
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Model rolling accuracy below threshold"
+          description: "Model accuracy based on ground truth feedback fell below 85% over the last 5 minutes (current: {{ $value | humanizePercentage }})."

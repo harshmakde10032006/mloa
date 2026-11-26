@@ -1,0 +1,57 @@
+{
+  "scenario_a_normal": {
+    "status": "Healthy / Normal",
+    "requests_total": 770.0,
+    "request_rate_rps": 2.66,
+    "error_rate_pct": 0.0,
+    "avg_latency_ms": 10.28,
+    "p95_latency_ms": 23.0,
+    "availability": "UP (1.0)",
+    "rolling_accuracy_pct": 92.45,
+    "petal_length_zscore": -0.26,
+    "alerts_firing": []
+  },
+  "scenario_b_errors": {
+    "status": "High Error Rate Active",
+    "request_rate_rps": 9.95,
+    "error_rate_pct": 27.06,
+    "p95_latency_ms": 21.63,
+    "alerts_active": [
+      "HighErrorRate"
+    ]
+  },
+  "scenario_c_drift": {
+    "status": "Feature Drift Detected",
+    "petal_length_zscore": 11.96,
+    "sepal_length_zscore": 12.69,
+    "rolling_accuracy_pct": 82.86,
+    "alerts_active": [
+      "FeatureDriftDetected",
+      "FeatureDriftDetected",
+      "LowModelAccuracy"
+    ]
+  },
+  "scenario_d_outage": {
+    "status": "Service Outage",
+    "availability": "DOWN (0.0)",
+    "alerts_active": [
+      "ModelServiceDown",
+      "LowModelAccuracy"
+    ]
+  },
+  "scenario_e_recovery": {
+    "status": "Recovered / Operational",
+    "availability": "UP (1.0)",
+    "alerts_active": [
+      "LowModelAccuracy"
+    ]
+  },
+  "scenario_f_batch": {
+    "sent_valid": 100,
+    "sent_invalid": 20,
+    "sent_total": 120,
+    "prometheus_delta_requests": 138,
+    "prometheus_delta_errors": 20,
+    "match": false
+  }
+}
